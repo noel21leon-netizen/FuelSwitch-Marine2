@@ -1,0 +1,46 @@
+# Builds the app and publishes dist/ to GitHub Pages (ADR-046).
+# One-time setup in the repo: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# Serving the repository files directly does NOT work: index.html points at src/main.tsx, which a
+# browser cannot run. Only the built dist/ folder is a working PWA.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # `npm install`, not `npm ci`: the lockfile does not yet contain @playwright/test (R-042).
+      - run: npm install --no-audit --no-fund
+      # `npm run build` = typecheck + vite build (it fails if the typecheck fails; that typecheck has not been run since chunk 4).
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
