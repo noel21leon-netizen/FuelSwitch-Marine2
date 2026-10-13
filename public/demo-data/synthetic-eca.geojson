@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "fuelswitch": {
+    "datasetId": "synthetic-eca-demo-001",
+    "name": "SYNTHETIC DEMO ECA (fictional)",
+    "emissionCategory": "SOX_PM",
+    "sourceName": "Hand-made fictional polygon for software testing",
+    "sourceUrl": "",
+    "datasetVersion": "0.1.0-synthetic",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "verificationStatus": "synthetic",
+    "lastReviewedAtUtc": null,
+    "notice": "DEMO DATA — NOT FOR NAVIGATION OR REGULATORY COMPLIANCE",
+    "note": "Located in open ocean and deliberately NOT any real Emission Control Area."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "synthetic-eca-1", "name": "Synthetic Demo ECA", "synthetic": true },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-20.0, -6.0], [-17.0, -7.0], [-16.5, -10.5], [-19.5, -11.0], [-20.0, -6.0]]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "FeatureCollection",
+  "fuelswitch": {
+    "routeId": "synthetic-route-east-crossing-001",
+    "name": "SYNTHETIC TEST ROUTE (fictional)",
+    "verificationStatus": "synthetic",
+    "notice": "DEMO DATA — NOT FOR NAVIGATION OR REGULATORY COMPLIANCE",
+    "note": "Enters the synthetic polygon through its west edge and leaves through its east edge."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "synthetic-route-1", "name": "Synthetic Test Route", "synthetic": true },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[-24.0, -8.0], [-21.0, -8.5], [-18.5, -8.6], [-14.0, -9.0]]
+      }
+    }
+  ]
+}
